@@ -1,11 +1,31 @@
 <h1>Mixer</h1>
 
 <div *ngIf="mixerData">
-
+   
   <c-row ngPreserveWhitespaces>
     <c-col xs="12">
       <c-card class="mb-4">
         <c-card-header>
+          <!-- Add Next and Cue controls here -->
+          <div class="d-flex justify-content-between align-items-center">
+            <button cButton color="primary" (click)="playNext()">
+              Next
+            </button>
+            
+            <div class="d-flex align-items-center gap-2">
+              <input 
+                type="text" 
+                cFormControl 
+                [(ngModel)]="cuePoint" 
+                placeholder="Enter cue point (e.g., 58:00)"
+                (keyup.enter)="cueToPoint()"
+                style="width: 200px;"
+              />
+              <button cButton color="primary" (click)="cueToPoint()">
+                Cue
+              </button>
+            </div>
+          </div>
         </c-card-header>
         <c-card-body>
           <app-docs-example href="components/table/mixer">
@@ -16,7 +36,6 @@
                 <th scope="col">Track</th>
                 <th scope="col">Elapsed</th>
                 <th scope="col">Remaining</th>
-                
               </tr>
               </thead>
               <tbody>
@@ -45,5 +64,4 @@
       </c-card>
     </c-col>
   </c-row>
-  
-  </div>
+</div>
